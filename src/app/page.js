@@ -1,9 +1,46 @@
-import Image from 'next/image'
+"use client";
+import Link from "next/link";
+import Image from "next/image";
+import { useState } from "react";
+import hiComponent from "./hi";
+import Dashboard from "./dashboard/page";
 
 export default function Home() {
+  let items = ["gaza", "rafah", "khanyounis", "magazy"];
+  // const handleClick = (event) => console.log(event);
+  // let selectedIndex = 0;
+  let [selectedIndex, setSelectedIndex] = useState();
+  let handleSelectItem = (item) => {
+    console.log(item);
+  };
+  // items = [];
+  // const message =  items.length === 0 ? "no items" : null ;
+
+  // if (items)
+  //   return (items.map((item) => (
+  //     <li key={item}>{item}</li>
+  //   )));
+
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-     <div> hi graduate project </div>
-    </main>
-  )
+    <>
+      <hiComponent />
+      <Link href="/dashboard">Dashboard</Link>
+      <Dashboard/>
+      <h1>heading 1</h1>
+      <div className="text-green-900"> hi graduate project </div>
+      {/* {items.length === 0 && "no items"} */}
+      {items.map((item, index) => (
+        <li
+          key={item}
+          className={selectedIndex === index ? "bg-slate-500" : null}
+          onClick={() => {
+            setSelectedIndex(index);
+            handleSelectItem(item);
+          }}
+        >
+          {item}
+        </li>
+      ))}
+    </>
+  );
 }
