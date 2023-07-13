@@ -3,7 +3,8 @@ import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
 import hiComponent from "./hi";
-import Dashboard from "./dashboard/page";
+import Dashboard from "./dashboard";
+// import Dashboard from "./dashboard/page";
 
 export default function Home() {
   let items = ["gaza", "rafah", "khanyounis", "magazy"];
@@ -24,8 +25,9 @@ export default function Home() {
   return (
     <>
       <hiComponent />
-      <Link href="/dashboard">Dashboard</Link>
-      <Dashboard/>
+      <Link href="/pages/sign-in">sign in </Link>
+      {/* <Dashboard /> */}
+      {/* <Dashboard/> */}
       <h1>heading 1</h1>
       <div className="text-green-900"> hi graduate project </div>
       {/* {items.length === 0 && "no items"} */}
