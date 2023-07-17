@@ -17,7 +17,7 @@ const Button = ({
   if (buttonSize === "large") {
     classNames += " py-4 px-5 text-lg";
   } else if (buttonSize === "small") {
-    classNames += " py-2 px-3 text-sm";
+    classNames += " py-2 px-3 text-sm w-1/2";
   } else {
     classNames += " py-3 px-4 text-base";
   }

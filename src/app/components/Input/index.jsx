@@ -7,12 +7,13 @@ const Input = ({
   inputSize = "medium",
   type = "text",
   error = false,
+  placeholder,
 }) => {
   let classNames = `border border-sky-500 ${className}`;
   if (inputSize === "large") {
     classNames += " py-4 px-5 ";
   } else if (inputSize === "small") {
-    classNames += " py-2 px-3 ";
+    classNames += " py-2 px-3 w-1/2";
   } else {
     classNames += " py-3 px-4 ";
   }
@@ -27,6 +28,7 @@ const Input = ({
         inputSize={inputSize}
         className={classNames}
         error={error}
+        placeholder={placeholder}
 
       ></input>
     </>
