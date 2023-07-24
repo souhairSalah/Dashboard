@@ -3,7 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
 import hiComponent from "./hi";
-import Dashboard from "./dashboard";
+import Dashboard from "./dashboard/page";
 // import Dashboard from "./dashboard/page";
 
 export default function Home() {
