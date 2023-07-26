@@ -6,10 +6,14 @@ const Input = ({
   className,
   inputSize = "medium",
   type = "text",
+  fullWidth = false,
   error = false,
   placeholder,
 }) => {
-  let classNames = `border border-sky-500 ${className}`;
+  let classNames = `border  ${className}`;
+  if(fullWidth) {
+    classNames += " w-full" ; 
+  }
   if (inputSize === "large") {
     classNames += " py-4 px-5 ";
   } else if (inputSize === "small") {
@@ -22,14 +26,13 @@ const Input = ({
   }
   return ( 
     <>
-      { haveLabel ? <label>{label}</label> : null }   
+      { haveLabel ? <label className="mb-1">{label}</label> : null }   
       <input 
         type={type}
         inputSize={inputSize}
         className={classNames}
         error={error}
         placeholder={placeholder}
-
       ></input>
     </>
   );
