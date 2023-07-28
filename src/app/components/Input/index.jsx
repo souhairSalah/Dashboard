@@ -1,15 +1,24 @@
+
 import React from "react";
 
-const Input = ({
+const Input = (
+  {
   haveLabel = false,
   label,
+  name,
   className,
   inputSize = "medium",
   type = "text",
   fullWidth = false,
   error = false,
+  errormessage,
   placeholder,
-}) => {
+  register,
+} )=> {
+
+  
+
+
   let classNames = `border  ${className}`;
   if(fullWidth) {
     classNames += " w-full" ; 
@@ -29,13 +38,15 @@ const Input = ({
       { haveLabel ? <label className="mb-1">{label}</label> : null }   
       <input 
         type={type}
+        name={name}
         inputSize={inputSize}
         className={classNames}
         error={error}
         placeholder={placeholder}
-      ></input>
+        errormessage = {errormessage}
+        {...register(name,{required:errormessage})}
+      />
     </>
   );
 };
-
 export default Input;

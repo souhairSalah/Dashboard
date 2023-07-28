@@ -1,7 +1,6 @@
 // import SignInForm from "@/app/features/authentication/components/SignInForm";
 import { Poppins } from "next/font/google";
 import SignInForm from "../../features/authentication/components/SignInForm";
-import AddCarForm from "../../features/authentication/components/AddCarForm";
 
 const poppins = Poppins({subset:['latin'],weight:['400'], preload:false});
 

@@ -7,6 +7,10 @@ import Dashboard from "./dashboard/page";
 // import Dashboard from "./dashboard/page";
 
 export default function Home() {
+
+ 
+
+
   let items = ["gaza", "rafah", "khanyounis", "magazy"];
   // const handleClick = (event) => console.log(event);
   // let selectedIndex = 0;
