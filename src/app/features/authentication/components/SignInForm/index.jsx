@@ -13,6 +13,7 @@ import { useRouter } from 'next/navigation';
 const SignInForm = () => {
   const router = useRouter();
   const[message,setMessage] = useState("");
+  const Token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MCwiaXNBZG1pbiI6dHJ1ZSwiaWF0IjoxNjkwMzE2MzQxLCJleHAiOjE2OTA5MjExNDEsImF1ZCI6IioiLCJpc3MiOiJjYXJfc2VydmljZSJ9.mMIJC7o2rf17opJtJfWM0X6Sfxd-0CUyz68zDHMzV-A";
 
   const {
     register,
@@ -25,18 +26,19 @@ const SignInForm = () => {
   const onSubmit = (data) => {
   fetch("http://157.175.56.75:7425/api/auth/admin/login", {
     method: "POST",
-    headers: { Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MCwiaXNBZG1pbiI6dHJ1ZSwiaWF0IjoxNjkwMzE2MzQxLCJleHAiOjE2OTA5MjExNDEsImF1ZCI6IioiLCJpc3MiOiJjYXJfc2VydmljZSJ9.mMIJC7o2rf17opJtJfWM0X6Sfxd-0CUyz68zDHMzV-A`,
+    headers: { Authorization: `Bearer ${Token}`,
               "Content-Type": "application/json"},
     body: JSON.stringify(data),
   })
     .then((response) => response.json())
     .then((response) => {
       console.log(response);
+      localStorage.setItem("Token", Token);
       if (response.statusCode >= 400){
         setMessage(response.message)
       }
       else if(response.statusCode < 400){ 
-        {router.push("/dashboard")}
+        {router.push("/dashboard/DashboardHome")}
       }
     })
     .catch((error) => {
