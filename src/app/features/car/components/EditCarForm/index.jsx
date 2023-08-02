@@ -8,12 +8,9 @@ import {useForm} from "react-hook-form";
 import { useState, useEffect } from "react";
 import { useSearchParams } from 'next/navigation'
 
-
-
 const EditCarForm = (dataa) => {
 
   const searchParams = useSearchParams();
-  const { register, handleSubmit } = useForm();
   const [result, setResult] = useState("");
 
   const [Car, setCar] = useState({ 
@@ -54,7 +51,7 @@ const EditCarForm = (dataa) => {
   };
     return (
       <div className="flex flex-row ">
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <form onSubmit={onSubmit}>
 
         <div className="">
         <Card className={"flex flex-wrap "}>
