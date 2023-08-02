@@ -1,7 +1,6 @@
-
 import React from "react";
 
-const Input = (
+const Inputcom = (
   {
   haveLabel = false,
   label,
@@ -13,7 +12,6 @@ const Input = (
   error = false,
   errormessage,
   placeholder,
-  register,
   value,
   onchange,
 } )=> {
@@ -48,11 +46,10 @@ const Input = (
         errormessage = {errormessage}
         value = {value}
         // onClick ={ onclick}
-         onChange = {()=> onchange}
+        onChange = {onchange}
 
-        {...register(name,{required:errormessage})}
       />
     </>
   );
 };
-export default Input;
+export default Inputcom;

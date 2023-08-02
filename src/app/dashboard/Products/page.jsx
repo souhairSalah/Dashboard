@@ -5,16 +5,26 @@ import Image from "next/image";
 import logo from "../../../../public/assets/img/logo.png";
 import useAxios from "../../hooks/UseAxios";
 import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
+
+
+
+import Link from 'next/link';
 const Products = () => {
+  // const navigate = useNavigate();
 
-
-  const {responseData, error, isloading, fetchData} = useAxios('http://157.175.56.75:7425/api/cars/all','get',{
-    Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjkwMzE2Mjg1LCJleHAiOjE2OTA5MjEwODUsImF1ZCI6IioiLCJpc3MiOiJjYXJfc2VydmljZSJ9.acfjX0Zsh3T3LBaqDVfyKRqKBwK20Y2KWmKt5FLV8g4`,
-  });
+  const router = useRouter();
+  const { responseData, error, isloading, fetchData } = useAxios(
+    "http://157.175.56.75:7425/api/cars/all",
+    "get",
+    {
+      Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjkwOTIyODEzLCJleHAiOjE2OTE1Mjc2MTMsImF1ZCI6IioiLCJpc3MiOiJjYXJfc2VydmljZSJ9.dppSYtaesocVQs1Mkvz0J4VcfmKa59Wu1QT8980HhQE`,
+    }
+  );
 
   useEffect(() => {
     fetchData();
-  },[]);
+  }, []);
 
   if (isloading) {
     return <div className="m-auto">Loading...</div>;
@@ -23,21 +33,16 @@ const Products = () => {
     return <div>Error: {error.message}</div>;
   }
 
-    const ToDeleteitem = (id) =>{
-      return(
-        fetch(`http://157.175.56.75:7425/api/cars/${id}/delete`, {
+  const ToDeleteitem = (id) => {
+    return fetch(`http://157.175.56.75:7425/api/cars/${id}/delete`, {
       method: "DELETE",
-      headers: { Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MCwiaXNBZG1pbiI6dHJ1ZSwiaWF0IjoxNjkwMzE2MzQxLCJleHAiOjE2OTA5MjExNDEsImF1ZCI6IioiLCJpc3MiOiJjYXJfc2VydmljZSJ9.mMIJC7o2rf17opJtJfWM0X6Sfxd-0CUyz68zDHMzV-A`},
-    })
-    .then(fetchData())
-      )  
-    }
-
-
-
+      headers: {
+        Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MCwiaXNBZG1pbiI6dHJ1ZSwiaWF0IjoxNjkwOTIyMDg4LCJleHAiOjE2OTE1MjY4ODgsImF1ZCI6IioiLCJpc3MiOiJjYXJfc2VydmljZSJ9.CXRtFRli7wVC4wWgEW9ckVedporkaAraf_KYmgmgLQI`,
+      },
+    }).then(fetchData());
+  };
   return (
     <div>
-      
       <div className="flex justify-start flex-wrap ">
         {responseData.map((item) => {
           return (
@@ -48,8 +53,25 @@ const Products = () => {
                   <span className="text-slate-500">{`$${item.rentalPrice}/hour`}</span>
                 </div>
                 <div className="flex justify-end ">
-                  <TrashIconMini className="h-6 w-6 text-red-500 cursor-pointer" onClick={()=>ToDeleteitem(item.id)}/>{" "}
-                  <PencilIconMini className="h-6 w-6 text-slate-600 cursor-pointer"  onClick={()=>console.log(`edit${item.id}`)}/>
+                  <TrashIconMini
+                    className="h-6 w-6 text-red-500 cursor-pointer"
+                    onClick={() => ToDeleteitem(item.id)}
+                  />{" "}
+                  <Link
+                    href={{
+                      pathname: "pages/edit-car",
+                      query: {
+                        ID: item.id,
+                        NAME: item.name,
+                        CAR_BRAND: item.brand,
+                        CAR_PRICE: item.rentalPrice,
+                        CAR_DESCRIPTION: item.description, 
+                        // CAR_PICture: item.picture
+                      },
+                    }}
+                  >
+                  <PencilIconMini className="h-6 w-6 text-slate-600 cursor-pointer" />
+                  </Link>
                 </div>
               </div>
               <Image
@@ -63,17 +85,39 @@ const Products = () => {
           );
         })}
       </div>
-    </div>  
+    </div>
   );
 };
 
+{
+  /* <PencilIconMini className="h-6 w-6 text-slate-600 cursor-pointer" 
+                   onClick={()=>{
+                    // router.push('pages/edit-car');
+
+                    // { navigate('pages/edit-car',{state:{ID:item.id}})}
+
+
+                   }}
+                   /> */
+}
+
+// router.push({
+//   pathname: 'pages/edit-car',
+//   query: {
+//     myData: item.rentalPrice
+//    }
+// });
 export default Products;
-        {/* src="/_next/image?url=%2Fstatic%2F1690665875529_IMG_20190820_135345.png&w=384&q=75" */}
+{
+  /* src="/_next/image?url=%2Fstatic%2F1690665875529_IMG_20190820_135345.png&w=384&q=75" */
+}
 
+{
+  /* <Image src={item.picture} alt="car image" width="150" height="150" className="m-auto"/> */
+}
 
-              {/* <Image src={item.picture} alt="car image" width="150" height="150" className="m-auto"/> */}
-
-{/* <ul className="">
+{
+  /* <ul className="">
           {responseData.map((i) => (
             <li className="flex flex-row  border border-slate-600 rounded mb-2">
               <img src={i.image} width={60} height={60} />
@@ -83,4 +127,5 @@ export default Products;
             </li>
           ))}
         </ul>
-    </div> */}
+    </div> */
+}
