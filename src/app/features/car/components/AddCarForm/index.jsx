@@ -31,7 +31,7 @@ const AddCarForm = () => {
 
     const res = await fetch("http://157.175.56.75:7425/api/cars/create", {
       method: "POST",
-      headers: { Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MCwiaXNBZG1pbiI6dHJ1ZSwiaWF0IjoxNjkwOTIyMDg4LCJleHAiOjE2OTE1MjY4ODgsImF1ZCI6IioiLCJpc3MiOiJjYXJfc2VydmljZSJ9.CXRtFRli7wVC4wWgEW9ckVedporkaAraf_KYmgmgLQI`,
+      headers: { Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MCwiaXNBZG1pbiI6dHJ1ZSwiaWF0IjoxNjkwOTI1MTE5LCJleHAiOjE2OTE1Mjk5MTksImF1ZCI6IioiLCJpc3MiOiJjYXJfc2VydmljZSJ9.4ruJap35s1NSLi0LaDcV480xixLdm21bbpiGjdgE7jI`,
                  },
       body: formData
     }).then((res) => res.json());
@@ -124,17 +124,6 @@ const AddCarForm = () => {
                 name = "brand"
                 register={register}
               ></Input>
-              {/* <Input 
-                type="text"
-                inputSize="small"
-                className={"rounded mb-3"} 
-                error = {false} 
-                fullWidth = {true}
-                haveLabel = {true} 
-                label = "Car brand"
-                name = "brand"
-                register={register}
-              ></Input> */}
               <Input 
                 type="text"
                 inputSize="small"
@@ -147,6 +136,17 @@ const AddCarForm = () => {
                 name = "rentalPrice"
                 register={register}
               ></Input>
+              {/* <Input 
+                type="text"
+                inputSize="small"
+                className={"rounded mb-3"} 
+                error = {false} 
+                fullWidth = {true}
+                haveLabel = {true} 
+                label = "Car specifications"
+                name = "specifications"
+                register={register}
+              ></Input> */}
               
               <label className="mb-1">Car Description </label>
               <textarea className="rounded mb-2 border-solid border " 

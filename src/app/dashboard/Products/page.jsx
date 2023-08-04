@@ -1,15 +1,15 @@
 "use client";
 import CarCard from "../../components/CarCard";
 import { TrashIconMini, PencilIconMini } from "../../lip/@heroicons";
-import Image from "next/image";
 import logo from "../../../../public/assets/img/logo.png";
 import useAxios from "../../hooks/UseAxios";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
+import Modal from "../../components/Modal";
 
-
-
-import Link from 'next/link';
+import Link from "next/link";
+import Delete from "../../components/Delete";
 const Products = () => {
   // const navigate = useNavigate();
 
@@ -37,7 +37,7 @@ const Products = () => {
     return fetch(`http://157.175.56.75:7425/api/cars/${id}/delete`, {
       method: "DELETE",
       headers: {
-        Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MCwiaXNBZG1pbiI6dHJ1ZSwiaWF0IjoxNjkwOTIyMDg4LCJleHAiOjE2OTE1MjY4ODgsImF1ZCI6IioiLCJpc3MiOiJjYXJfc2VydmljZSJ9.CXRtFRli7wVC4wWgEW9ckVedporkaAraf_KYmgmgLQI`,
+        Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MCwiaXNBZG1pbiI6dHJ1ZSwiaWF0IjoxNjkwOTI1MTE5LCJleHAiOjE2OTE1Mjk5MTksImF1ZCI6IioiLCJpc3MiOiJjYXJfc2VydmljZSJ9.4ruJap35s1NSLi0LaDcV480xixLdm21bbpiGjdgE7jI`,
       },
     }).then(fetchData());
   };
@@ -45,6 +45,7 @@ const Products = () => {
     <div>
       <div className="flex justify-start flex-wrap ">
         {responseData.map((item) => {
+          // console.log(item.picture);
           return (
             <CarCard className={"mb-5 "}>
               <div className="flex justify-between ">
@@ -53,10 +54,26 @@ const Products = () => {
                   <span className="text-slate-500">{`$${item.rentalPrice}/hour`}</span>
                 </div>
                 <div className="flex justify-end ">
-                  <TrashIconMini
+
+                <TrashIconMini
                     className="h-6 w-6 text-red-500 cursor-pointer"
                     onClick={() => ToDeleteitem(item.id)}
-                  />{" "}
+                  /> 
+
+                  
+                  {/* <Modal
+                    header="Are you sure to delete?"
+                    children={<></>}
+                    title={
+                      <TrashIconMini
+                        className="h-6 w-6 text-red-500 cursor-pointer"
+                        onClick={() => ToDeleteitem(item.id)}
+                      />
+                    }
+                    classNamee=""
+                    firstButton="yes"
+                  /> */}
+                  {/*  */}
                   <Link
                     href={{
                       pathname: "pages/edit-car",
@@ -65,22 +82,24 @@ const Products = () => {
                         NAME: item.name,
                         CAR_BRAND: item.brand,
                         CAR_PRICE: item.rentalPrice,
-                        CAR_DESCRIPTION: item.description, 
-                        // CAR_PICture: item.picture
+                        CAR_DESCRIPTION: item.description,
+                        CAR_PICTURE: item.picture,
                       },
                     }}
                   >
-                  <PencilIconMini className="h-6 w-6 text-slate-600 cursor-pointer" />
+                    <PencilIconMini className="h-6 w-6 text-slate-600 cursor-pointer" />
                   </Link>
                 </div>
               </div>
               <Image
-                src={logo}
-                alt="logo image"
-                width="160"
-                height="160"
+                src={item.picture}
+                alt="car image"
+                width={160}
+                height={160}
                 className="m-auto"
+                priority={true}
               />
+              {/* <img src={`"${item.picture}"`} alt="car image" /> */}
             </CarCard>
           );
         })}
@@ -88,6 +107,10 @@ const Products = () => {
     </div>
   );
 };
+
+{
+
+}
 
 {
   /* <PencilIconMini className="h-6 w-6 text-slate-600 cursor-pointer" 

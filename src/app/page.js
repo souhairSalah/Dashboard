@@ -1,52 +1,38 @@
 "use client";
 import Link from "next/link";
+import Button from "../app/components/Button";
 import Image from "next/image";
 import { useState } from "react";
 import hiComponent from "./hi";
 import Dashboard from "./dashboard/page";
+import Card from "./components/Card";
+import Delete from "./components/Delete";
+
 // import Dashboard from "./dashboard/page";
 
 export default function Home() {
-
- 
-
-
-  let items = ["gaza", "rafah", "khanyounis", "magazy"];
-  // const handleClick = (event) => console.log(event);
-  // let selectedIndex = 0;
-  let [selectedIndex, setSelectedIndex] = useState();
-  let handleSelectItem = (item) => {
-    console.log(item);
-  };
-  // items = [];
-  // const message =  items.length === 0 ? "no items" : null ;
-
-  // if (items)
-  //   return (items.map((item) => (
-  //     <li key={item}>{item}</li>
-  //   )));
-
   return (
-    <>
-      <hiComponent />
-      <Link href="/pages/sign-in">sign in </Link>
-      {/* <Dashboard /> */}
-      {/* <Dashboard/> */}
-      <h1>heading 1</h1>
-      <div className="text-green-900"> hi graduate project </div>
-      {/* {items.length === 0 && "no items"} */}
-      {items.map((item, index) => (
-        <li
-          key={item}
-          className={selectedIndex === index ? "bg-slate-500" : null}
-          onClick={() => {
-            setSelectedIndex(index);
-            handleSelectItem(item);
-          }}
+    <div className="text-center w-4/12 m-auto text-500">
+      <Card className={"flex justify-center flex-col flex-wrap mt-40  m-auto"}>
+        <h1 className="mb-5">
+          {" "}
+          wellcome to my graduate project to start click on start !{" "}
+        </h1>
+        <Button
+          className="bg-emerald-500 text-white w-1/5 m-auto"
+          type="submit"
+          buttonSize="medium"
+          fullWidth={false}
+          loading={false}
         >
-          {item}
-        </li>
-      ))}
-    </>
+          start 
+        </Button>
+      </Card>
+
+      <Delete/>
+    </div>
   );
 }
+
+      {/* <h1 className=""><Link href="/pages/sign-in"> start </Link> </h1>  */}
+
