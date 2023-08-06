@@ -1,5 +1,6 @@
 import React from 'react';
-
+import ClipLoader from "react-spinners/ClipLoader";
+ 
 const Button = ({
   children,
   className,
@@ -26,7 +27,8 @@ const Button = ({
     <button type={type}
     className={classNames}
     >
-     {loading ? "loading..." : children} 
+      {/* {children} */}
+     {loading ? <ClipLoader color="#10b981" /> : children } 
     </button>
   );
 };

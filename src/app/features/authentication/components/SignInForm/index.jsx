@@ -13,6 +13,7 @@ import { useRouter } from 'next/navigation';
 const SignInForm = () => {
   const router = useRouter();
   const[message,setMessage] = useState("");
+  const[loading, setLoading] = useState(false);
   const Token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MCwiaXNBZG1pbiI6dHJ1ZSwiaWF0IjoxNjkwOTI1MTE5LCJleHAiOjE2OTE1Mjk5MTksImF1ZCI6IioiLCJpc3MiOiJjYXJfc2VydmljZSJ9.4ruJap35s1NSLi0LaDcV480xixLdm21bbpiGjdgE7jI";
 
   const {
@@ -24,6 +25,7 @@ const SignInForm = () => {
     });
 
   const onSubmit = (data) => {
+   
   fetch("http://157.175.56.75:7425/api/auth/admin/login", {
     method: "POST",
     headers: { Authorization: `Bearer ${Token}`,
@@ -44,6 +46,10 @@ const SignInForm = () => {
     .catch((error) => {
       console.error(error);
     });
+    
+    if(!data){
+      setLoading(true);
+    }
            
 
   }
@@ -87,7 +93,7 @@ const SignInForm = () => {
               type = "submit"
               buttonSize = "small"
               fullWidth = {true}
-              loading = {false}
+              loading = {loading}
             >
               log in
             </Button>

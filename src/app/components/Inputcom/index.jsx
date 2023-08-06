@@ -1,4 +1,5 @@
 import React from "react";
+import { useMemo } from "react";
 
 const Inputcom = (
   {
@@ -16,9 +17,6 @@ const Inputcom = (
   onchange,
 } )=> {
 
-  
-
-
   let classNames = `border  ${className}`;
   if(fullWidth) {
     classNames += " w-full" ; 
@@ -33,6 +31,7 @@ const Inputcom = (
   if(error){
     classNames += " border border-red-600";
   }
+
   return ( 
     <>
       { haveLabel ? <label className="mb-1">{label}</label> : null }   

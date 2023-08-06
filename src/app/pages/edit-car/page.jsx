@@ -5,18 +5,12 @@ import EditCarForm from "../../features/car/components/EditCarForm";
 
 const poppins = Poppins({subset:['latin'],weight:['400'], preload:false});
 
-
-
-
-
-
-
 const EditCar = () => {
   return (
-    <div className={` ${poppins.className}`}>
-      <EditCarForm />
+    <div className={`${poppins.className}`}>
+      <EditCarForm/>
     </div>
-    
+     
   );
 };
 

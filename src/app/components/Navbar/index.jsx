@@ -6,7 +6,8 @@ import AdminImage from "../../../../public/assets/img/admin.jpg";
 const Navbar = () => {
   return (
     <>
-      <nav className=" bg-white flex justify-between shadow-md ">
+    {/* bg-white flex justify-between shadow-md */}
+      <nav className="      flex justify-between items-center mb-10  bg-white   top-0 fixed w-full z-50">
         {/* <div className="flex flex-col"> */}
           <Image
             src={logo}

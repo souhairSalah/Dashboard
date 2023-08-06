@@ -7,6 +7,8 @@ import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import Modal from "../../components/Modal";
+import ClipLoader from "react-spinners/ClipLoader";
+
 
 import Link from "next/link";
 import Delete from "../../components/Delete";
@@ -26,9 +28,9 @@ const Products = () => {
     fetchData();
   }, []);
 
-  if (isloading) {
-    return <div className="m-auto">Loading...</div>;
-  }
+  // if (isloading) {
+  //   return <div className=""><ClipLoader color="#10b981" size={100} /></div>;
+  // }
   if (error) {
     return <div>Error: {error.message}</div>;
   }
@@ -43,12 +45,13 @@ const Products = () => {
   };
   return (
     <div>
-      <div className="flex justify-start flex-wrap ">
+     { (isloading) ? <ClipLoader color="#10b981" size={130} />
+      :<div className="flex justify-start flex-wrap  ">
         {responseData.map((item) => {
-          // console.log(item.picture);
+          console.log(item.picture);
           return (
-            <CarCard className={"mb-5 "}>
-              <div className="flex justify-between ">
+            <CarCard className="mb-5 h-64 w-80">
+              <div className="flex justify-between  ">
                 <div className="flex  flex-col">
                   <p>{item.name}</p>
                   <span className="text-slate-500">{`$${item.rentalPrice}/hour`}</span>
@@ -59,8 +62,6 @@ const Products = () => {
                     className="h-6 w-6 text-red-500 cursor-pointer"
                     onClick={() => ToDeleteitem(item.id)}
                   /> 
-
-                  
                   {/* <Modal
                     header="Are you sure to delete?"
                     children={<></>}
@@ -92,18 +93,17 @@ const Products = () => {
                 </div>
               </div>
               <Image
-                src={item.picture}
+                src={`http://157.175.56.75:7425${item.picture}`}
                 alt="car image"
                 width={160}
                 height={160}
                 className="m-auto"
-                priority={true}
               />
               {/* <img src={`"${item.picture}"`} alt="car image" /> */}
             </CarCard>
           );
         })}
-      </div>
+      </div>}
     </div>
   );
 };

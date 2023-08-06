@@ -1,5 +1,6 @@
 "use client";
 import Link from "next/link";
+import ClipLoader from "react-spinners/ClipLoader";
 import Button from "../app/components/Button";
 import Image from "next/image";
 import { useState } from "react";
@@ -19,17 +20,19 @@ export default function Home() {
           wellcome to my graduate project to start click on start !{" "}
         </h1>
         <Button
+        
           className="bg-emerald-500 text-white w-1/5 m-auto"
           type="submit"
           buttonSize="medium"
           fullWidth={false}
           loading={false}
         >
-          start 
+        <Link href="/pages/sign-in"> start  </Link>
         </Button>
+        <ClipLoader color="#10b981" />
       </Card>
 
-      <Delete/>
+      {/* <Delete/> */}
     </div>
   );
 }

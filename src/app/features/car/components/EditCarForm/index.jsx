@@ -10,22 +10,33 @@ import { useSearchParams } from "next/navigation";
 
 const EditCarForm = () => {
   const searchParams = useSearchParams();
-  const [result, setResult] = useState("");
-  const [file, setFile] = useState();
-  function handlechange(event) {
-    setFile(event.target.files[0]);
-  }
-
-  const [Car, setCar] = useState({
+  const searchParas = {
     id: searchParams.get("ID"),
     theName: searchParams.get("NAME"),
     brand: searchParams.get("CAR_BRAND"),
     rentalPrice: searchParams.get("CAR_PRICE"),
     description: searchParams.get("CAR_DESCRIPTION"),
-    // picture: searchParams.get('CAR_PICTURE')
-  });
-
+    picture: searchParams.get("CAR_PICTURE"),
+  };
+  const [result, setResult] = useState("");
+  const [file, setFile] = useState();
   const [specifications, setSpecifications] = useState({});
+  const [preview, setpreview] = useState(
+    `http://157.175.56.75:7425${searchParas?.picture}`
+  );
+  const [Car, setCar] = useState(searchParas);
+  function handlechange(event) {
+    setFile(event.target.files[0]);
+  }
+
+  useEffect(() => {
+    if (file) {
+      const fileObj = URL.createObjectURL(file);
+      setpreview(fileObj);
+
+      return () => URL.revokeObjectURL(fileObj);
+    }
+  }, [file]);
 
   const formdata = new FormData();
   formdata.append("name", Car.theName);
@@ -35,7 +46,19 @@ const EditCarForm = () => {
   formdata.append("picture", file);
   // formdata.append('picture',Car.picture);
 
-  const onSubmit = async (Car) => {
+  // const onSubmit = (Car) => {
+  //   return fetch(`http://157.175.56.75:7425/api/cars/${Car.id}/update`, {
+  //     method: "PUT",
+  //     headers: {
+  //       Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MCwiaXNBZG1pbiI6dHJ1ZSwiaWF0IjoxNjkwOTI1MTE5LCJleHAiOjE2OTE1Mjk5MTksImF1ZCI6IioiLCJpc3MiOiJjYXJfc2VydmljZSJ9.4ruJap35s1NSLi0LaDcV480xixLdm21bbpiGjdgE7jI`,
+  //     },
+  //     body: formdata,
+  //   }).then((res) => res.json());
+  // };
+
+  const onSubmit = async (e) => {
+    e.preventDefault();
+    console.log(e);
     setResult("Sending....");
     const res = await fetch(
       `http://157.175.56.75:7425/api/cars/${Car.id}/update`,
@@ -108,33 +131,15 @@ const EditCarForm = () => {
                   setCar({ ...Car, rentalPrice: e.target.value })
                 }
               ></Inputcom>
-              <label className="mb-1">Car Description </label>
+              <label className="mb-1"> Car Description </label>
               <textarea
                 className="rounded mb-2 border-solid border "
                 onChange={(e) =>
                   setCar({ ...Car, description: e.target.value })
                 }
                 value={Car.description}
+                name="description"
               />
-              <label className="mb-1">Car specifications</label>
-              <div className="flex">
-                <input
-                  className="rounded mb-2 border-solid border "
-                  type="text"
-                  name="spe name"
-                  onChange={(e) =>
-                    setCar({ ...specifications, description: e.target.value })
-                  }
-                ></input>
-                <input
-                  className="rounded mb-2 border-solid border "
-                  type="text"
-                  name="spe value"
-                  onChange={(e) =>
-                    setCar({ ...Car, description: e.target.value })
-                  }
-                ></input>
-              </div>
               <Inputcom
                 type="file"
                 className={"rounded "}
@@ -146,6 +151,7 @@ const EditCarForm = () => {
                 // value={file}
                 // onchange={(e) => setCar({ ...Car, brand: e.target.value })}
               />
+              <Image src={preview} width={150} height={150} />
               <Button
                 className="bg-emerald-500 text-white mb-2 mt-3"
                 type="submit"
@@ -164,13 +170,36 @@ const EditCarForm = () => {
 };
 export default EditCarForm;
 
+{
+  /* <label className="mb-1">Car specifications</label>
+              <div className="flex">
+                <input
+                  className="rounded mb-2 border-solid border "
+                  type="text"
+                  name="spe name"
+                  onChange={(e) =>
+                    setCar({ ...specifications, description: e.target.value })
+                  }
+                ></input>
+                <input
+                  className="rounded mb-2 border-solid border "
+                  type="text"
+                  name="spe value"
+                  onChange={(e) =>
+                    setCar({ ...Car, description: e.target.value })
+                  }
+                ></input>
+              </div> */
+}
+
 // const updateimage = (event) => {
 //   setCar(prev => {
 //     return {...prev , picture: event.target.files[0]}
 //   });
 // }
 
-  {/* <Inputcom
+{
+  /* <Inputcom
                 type="text"
                 inputSize="small"
                 className={"rounded mb-3"} 
@@ -179,7 +208,8 @@ export default EditCarForm;
                 haveLabel = {true} 
                 label = "Car specifications"
                 name = "specifications"
-              ></Inputcom> */}
+              ></Inputcom> */
+}
 
 {
   /* {Car.description}

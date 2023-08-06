@@ -8,10 +8,10 @@ import {useForm} from "react-hook-form";
 import { useState } from "react";
 
 const AddCarForm = () => {
-
-
   const { register, handleSubmit } = useForm();
   const [result, setResult] = useState("");
+  const addname=()=>{
+  }
 
   const onSubmit = async (data) => {
     // console.log(data);
@@ -47,49 +47,6 @@ const AddCarForm = () => {
   };
 
 
-  // const {
-  //   register,
-  //   handleSubmit,
-  //   formState: { errors },
-  //   } = useForm({
-  //    mode :"all"
-  //   });
-
-  //   const onSubmit = (data) => {
-  //     const picture = data.picture[0];
-  //     const formData = new FormData();
-
-  //     formData.append("picture",picture);
-  //     formData.append("name", data.name);
-  //     formData.append("brand", data.brand);
-  //     formData.append("rentalPrice", data.rentalPrice);
-  //     formData.append("description", data.description);
-
-  //     // console.log(Object.fromEntries(formData))
-
-
-  //     fetch("https://car-service-aif1.onrender.com/api/cars/create", {
-  //     method: "POST",
-  //     headers: { Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MCwiaXNBZG1pbiI6dHJ1ZSwiaWF0IjoxNjkwMzE2MzQxLCJleHAiOjE2OTA5MjExNDEsImF1ZCI6IioiLCJpc3MiOiJjYXJfc2VydmljZSJ9.mMIJC7o2rf17opJtJfWM0X6Sfxd-0CUyz68zDHMzV-A`,
-  //               "Content-Type": "application/json"},
-  //     body: JSON.stringify(Object.fromEntries(formData)),
-  // })
-  //   .then((response) => response.json())
-  //   .then((response) => {
-  //     console.log(response);
-  //     // if (response.statusCode >= 400){
-  //     //   setMessage(response.message)
-  //     // }
-  //     // else if(response.statusCode < 400){ 
-  //     //   {router.push("/dashboard")}
-  //     // }
-  //   })
-  //   .catch((error) => {
-  //     console.error(error);
-  //   });
-
-
-  //   }
 
     return (
       <div className="flex flex-row ">
@@ -142,12 +99,45 @@ const AddCarForm = () => {
                 className={"rounded mb-3"} 
                 error = {false} 
                 fullWidth = {true}
-                haveLabel = {true} 
-                label = "Car specifications"
-                name = "specifications"
+                haveLabel = {false} 
+                name = "spename"
                 register={register}
+                onchange={(e) =>
+                  setSpename(e.target.value )
+                }
+              ></Input>
+              <Input 
+                type="text"
+                inputSize="small"
+                className={"rounded mb-3"} 
+                error = {false} 
+                fullWidth = {true}
+                haveLabel = {false} 
+                name = "spevalue"
+                register={register}
+                onchange={(e) =>
+                  setSpevalue(e.target.value )
+                }
               ></Input> */}
-              
+
+
+                {/* <input
+                  className="rounded mb-2 border-solid border "
+                  type="text"
+                  name="spename"
+                  onChange={(e) =>
+                    setSpename(e.target.value )
+                  }
+                ></input>
+                <input
+                  className="rounded mb-2 border-solid border "
+                  type="text"
+                  name="spevalue"
+                  onChange={(e) =>
+                    setSpevalue(e.target.value )
+                  }
+                ></input> */}
+
               <label className="mb-1">Car Description </label>
               <textarea className="rounded mb-2 border-solid border " 
               {...register("description")}></textarea>  
@@ -185,3 +175,60 @@ const AddCarForm = () => {
     );
 }
 export default AddCarForm;
+
+  // const {
+  //   register,
+  //   handleSubmit,
+  //   formState: { errors },
+  //   } = useForm({
+  //    mode :"all"
+  //   });
+
+  //   const onSubmit = (data) => {
+  //     const picture = data.picture[0];
+  //     const formData = new FormData();
+
+  //     formData.append("picture",picture);
+  //     formData.append("name", data.name);
+  //     formData.append("brand", data.brand);
+  //     formData.append("rentalPrice", data.rentalPrice);
+  //     formData.append("description", data.description);
+
+  //     // console.log(Object.fromEntries(formData))
+
+
+  //     fetch("https://car-service-aif1.onrender.com/api/cars/create", {
+  //     method: "POST",
+  //     headers: { Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MCwiaXNBZG1pbiI6dHJ1ZSwiaWF0IjoxNjkwMzE2MzQxLCJleHAiOjE2OTA5MjExNDEsImF1ZCI6IioiLCJpc3MiOiJjYXJfc2VydmljZSJ9.mMIJC7o2rf17opJtJfWM0X6Sfxd-0CUyz68zDHMzV-A`,
+  //               "Content-Type": "application/json"},
+  //     body: JSON.stringify(Object.fromEntries(formData)),
+  // })
+  //   .then((response) => response.json())
+  //   .then((response) => {
+  //     console.log(response);
+  //     // if (response.statusCode >= 400){
+  //     //   setMessage(response.message)
+  //     // }
+  //     // else if(response.statusCode < 400){ 
+  //     //   {router.push("/dashboard")}
+  //     // }
+  //   })
+  //   .catch((error) => {
+  //     console.error(error);
+  //   });
+
+
+  //   }
+
+
+{/* <Input 
+                type="text"
+                inputSize="small"
+                className={"rounded mb-3"} 
+                error = {false} 
+                fullWidth = {true}
+                haveLabel = {true} 
+                label = "Car specifications"
+                name = "specifications"
+                register={register}
+              ></Input> */}

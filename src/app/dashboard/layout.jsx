@@ -6,9 +6,9 @@ export default function DashboardLayout({ children }) {
     <>
       <div>
         <Navbar />
-        <div className="flex">
+        <div className="flex mt-[107px] ">
           <SideBar />
-          {children}
+          <div className="ml-60 m-3">{children}</div>
         </div>
       </div>
     </>
