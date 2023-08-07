@@ -17,6 +17,7 @@ const EditCarForm = () => {
     rentalPrice: searchParams.get("CAR_PRICE"),
     description: searchParams.get("CAR_DESCRIPTION"),
     picture: searchParams.get("CAR_PICTURE"),
+    discount: searchParams.get("CAR_DISCOUNT"),
   };
   const [result, setResult] = useState("");
   const [file, setFile] = useState();
@@ -42,6 +43,7 @@ const EditCarForm = () => {
   formdata.append("name", Car.theName);
   formdata.append("brand", Car.brand);
   formdata.append("rentalPrice", Car.rentalPrice);
+  formdata.append("discount", Car.discount);
   formdata.append("description", Car.description);
   formdata.append("picture", file);
   // formdata.append('picture',Car.picture);
@@ -91,7 +93,7 @@ const EditCarForm = () => {
                 height="150"
                 className="m-auto"
               />
-              <h1 className="text-lg font-medium mb-5">Edit new Car</h1>
+              <h1 className="text-lg font-semibold mb-5">Edit Car</h1>
               <Inputcom
                 type="text"
                 InputcoSize="small"
@@ -129,6 +131,20 @@ const EditCarForm = () => {
                 value={Car.rentalPrice}
                 onchange={(e) =>
                   setCar({ ...Car, rentalPrice: e.target.value })
+                }
+              ></Inputcom>
+              <Inputcom
+                type="text"
+                inputSize="small"
+                className={"rounded mb-3"}
+                error={false}
+                fullWidth={true}
+                haveLabel={true}
+                label="discount"
+                name="discount"
+                value={Car.discount}
+                onchange={(e) =>
+                  setCar({ ...Car, discount: e.target.value })
                 }
               ></Inputcom>
               <label className="mb-1"> Car Description </label>

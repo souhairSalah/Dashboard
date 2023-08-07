@@ -59,7 +59,7 @@ const AddCarForm = () => {
                 height="150"
                 className="m-auto"
               />
-              <h1 className="text-lg font-medium mb-5">Add new Car</h1>
+              <h1 className="text-lg font-semibold mb-5">Add new Car</h1>
               <Input
                 type="text"
                 inputSize="small"
@@ -92,6 +92,17 @@ const AddCarForm = () => {
                 label="Car price/hour "
                 placeholder="price/hour"
                 name="rentalPrice"
+                register={register}
+              ></Input>
+              <Input
+                type="text"
+                inputSize="small"
+                className={"rounded mb-3"}
+                error={false}
+                fullWidth={true}
+                haveLabel={true}
+                label="discount"
+                name="discount"
                 register={register}
               ></Input>
               <label className="mb-1">Car Description </label>

@@ -47,7 +47,7 @@ const SignInForm = () => {
       console.error(error);
     });
     
-    if(!data){
+    if(data){
       setLoading(true);
     }
            
@@ -59,7 +59,7 @@ const SignInForm = () => {
         <Card className={"flex justify-center  flex-wrap mt-20  m-auto"}>
           <div className='flex flex-col'>
           <Image src={logo} alt="logo image" width="160" height="160" className="m-auto"/>
-            <h1 className="text-lg font-medium mb-5 ">Log In</h1>
+            <h1 className="text-lg font-semibold mb-5 ">Log In</h1>
           <form onSubmit={handleSubmit(onSubmit)}> 
 
             <Input 
@@ -70,7 +70,7 @@ const SignInForm = () => {
               haveLabel = {true} 
               fullWidth = {true}
               label = "User Name"
-              placeholder = "hannah.green@test.com"
+              placeholder = "test@gmail.com"
               name = "username"
               register={register}
               errormessage = {message}

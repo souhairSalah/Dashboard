@@ -27,8 +27,7 @@ const Button = ({
     <button type={type}
     className={classNames}
     >
-      {/* {children} */}
-     {loading ? <ClipLoader color="#10b981" /> : children } 
+     {loading ? <ClipLoader color="white" /> : children } 
     </button>
   );
 };

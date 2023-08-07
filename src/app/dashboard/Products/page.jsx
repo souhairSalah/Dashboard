@@ -45,11 +45,25 @@ const Products = () => {
   };
   return (
     <div>
-     <div className=" flex flex-row justify-between mb-5 mt-2">
-      <h1>Dashboard</h1>
-     <Link href="/pages/add-car" className=""> <PlusIconMini class="h-6 w-6 text-slate-950" /></Link>
+
+
+
+
+
+      {/* "Sound": "High Audio"
+"Safety": "Anti-Skid"
+"Lighting": "LED Lights"
+"Control": "10 Touchscreen"
+"Comfort": "Steering Control"
+"Roof":" Panoramic"
+"Design": "Modern Elegance"
+"Wheels": "18 Alloys" */}
+      
+     <div className=" flex flex-row justify-between mb-5 mt-2 "> 
+      <h1 className="font-semibold text-lg">Dashboard</h1>
+      <Link href="/pages/add-car" className=""> <PlusIconMini class="h-7 w-7 text-slate-950 bg-[#10b981]  rounded-full" /></Link>
       </div> 
-     { (isloading) ? <ClipLoader color="#10b981" size={130} />
+     { (isloading) ? <ClipLoader color="#10b981" size={130} className=""/>
       :<div className="flex justify-start flex-wrap  ">
         {responseData.map((item) => {
           console.log(item.picture);
@@ -58,12 +72,12 @@ const Products = () => {
               <div className="flex justify-between  ">
                 <div className="flex  flex-col">
                   <p>{item.name}</p>
-                  <span className="text-slate-500">{`$${item.rentalPrice}/hour`}</span>
+                  <span className="text-slate-500">{`$${item.rentalPrice}/day`}</span>
                 </div>
                 <div className="flex justify-end ">
 
                 <TrashIconMini
-                    className="h-6 w-6 text-red-500 cursor-pointer"
+                    className="h-6 w-6 text-red-500 cursor-pointer mr-2"
                     onClick={() => ToDeleteitem(item.id)}
                   /> 
                   {/* <Modal
@@ -89,6 +103,7 @@ const Products = () => {
                         CAR_PRICE: item.rentalPrice,
                         CAR_DESCRIPTION: item.description,
                         CAR_PICTURE: item.picture,
+                        CAR_DISCOUNT:item.discount,
                       },
                     }}
                   >
