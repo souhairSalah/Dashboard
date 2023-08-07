@@ -11,6 +11,8 @@ import Delete from "./components/Delete";
 
 // import Dashboard from "./dashboard/page";
 
+
+
 export default function Home() {
   return (
     <div className="text-center w-4/12 m-auto text-500">
@@ -20,16 +22,14 @@ export default function Home() {
           wellcome to my graduate project to start click on start !{" "}
         </h1>
         <Button
-        
           className="bg-emerald-500 text-white w-1/5 m-auto"
           type="submit"
           buttonSize="medium"
           fullWidth={false}
           loading={false}
         >
-        <Link href="/pages/sign-in"> start  </Link>
+          <Link href="/pages/sign-in"> start </Link>
         </Button>
-        <ClipLoader color="#10b981" />
       </Card>
 
       {/* <Delete/> */}
@@ -37,5 +37,6 @@ export default function Home() {
   );
 }
 
-      {/* <h1 className=""><Link href="/pages/sign-in"> start </Link> </h1>  */}
-
+{
+  /* <h1 className=""><Link href="/pages/sign-in"> start </Link> </h1>  */
+}

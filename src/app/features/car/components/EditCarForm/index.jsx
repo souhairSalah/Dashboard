@@ -79,9 +79,9 @@ const EditCarForm = () => {
     }
   };
   return (
-    <div className="flex flex-row ">
-      <form onSubmit={onSubmit}>
-        <div className="">
+    <div className="">
+      <form onSubmit={onSubmit} className="flex flex-wrap flex-row justify-between ">
+        <div className="w-2/5">
           <Card className={"flex flex-wrap "}>
             <div className="flex flex-col">
               <Image
@@ -140,18 +140,7 @@ const EditCarForm = () => {
                 value={Car.description}
                 name="description"
               />
-              <Inputcom
-                type="file"
-                className={"rounded "}
-                error={false}
-                haveLabel={true}
-                label="Add a car"
-                name="picture"
-                onchange={handlechange}
-                // value={file}
-                // onchange={(e) => setCar({ ...Car, brand: e.target.value })}
-              />
-              <Image src={preview} width={150} height={150} />
+
               <Button
                 className="bg-emerald-500 text-white mb-2 mt-3"
                 type="submit"
@@ -162,6 +151,22 @@ const EditCarForm = () => {
                 Add the car
               </Button>
             </div>
+          </Card>
+        </div>
+        <div className="m-auto ">
+          <Card className="">
+          <Image src={preview} width={150} height={150} className="m-auto"/>
+            <Inputcom
+              type="file"
+              className={"rounded m-auto "}
+              error={false}
+              haveLabel={true}
+              label="Choose a new car photo"
+              name="picture"
+              onchange={handlechange}
+              // value={file}
+              // onchange={(e) => setCar({ ...Car, brand: e.target.value })}
+            />
           </Card>
         </div>
       </form>

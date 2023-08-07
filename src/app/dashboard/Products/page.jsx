@@ -1,6 +1,6 @@
 "use client";
 import CarCard from "../../components/CarCard";
-import { TrashIconMini, PencilIconMini } from "../../lip/@heroicons";
+import { TrashIconMini, PencilIconMini, PlusIconMini } from "../../lip/@heroicons";
 import logo from "../../../../public/assets/img/logo.png";
 import useAxios from "../../hooks/UseAxios";
 import { useState, useEffect } from "react";
@@ -45,6 +45,10 @@ const Products = () => {
   };
   return (
     <div>
+     <div className=" flex flex-row justify-between mb-5 mt-2">
+      <h1>Dashboard</h1>
+     <Link href="/pages/add-car" className=""> <PlusIconMini class="h-6 w-6 text-slate-950" /></Link>
+      </div> 
      { (isloading) ? <ClipLoader color="#10b981" size={130} />
       :<div className="flex justify-start flex-wrap  ">
         {responseData.map((item) => {
@@ -95,8 +99,8 @@ const Products = () => {
               <Image
                 src={`http://157.175.56.75:7425${item.picture}`}
                 alt="car image"
-                width={160}
-                height={160}
+                width={220}
+                height={220}
                 className="m-auto"
               />
               {/* <img src={`"${item.picture}"`} alt="car image" /> */}
