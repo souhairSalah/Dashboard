@@ -3,8 +3,8 @@ import { Dialog, Transition } from '@headlessui/react';
 import { Fragment} from 'react';
 
 
-const Modal = ({title, classNamee, header, children, firstButton}) => {
-  let [isOpen, setIsOpen] = useState(true)
+const Modal = ({title, classNamee, header, children, firstButton, ToDO}) => {
+  let [isOpen, setIsOpen] = useState(false)
 
   function closeModal() {
     setIsOpen(false)

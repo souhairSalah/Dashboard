@@ -1,6 +1,10 @@
 "use client";
 import CarCard from "../../components/CarCard";
-import { TrashIconMini, PencilIconMini, PlusIconMini } from "../../lip/@heroicons";
+import {
+  TrashIconMini,
+  PencilIconMini,
+  PlusIconMini,
+} from "../../lip/@heroicons";
 import logo from "../../../../public/assets/img/logo.png";
 import useAxios from "../../hooks/UseAxios";
 import { useState, useEffect } from "react";
@@ -8,13 +12,9 @@ import { useRouter } from "next/navigation";
 import Image from "next/image";
 import Modal from "../../components/Modal";
 import ClipLoader from "react-spinners/ClipLoader";
-
-
 import Link from "next/link";
 import Delete from "../../components/Delete";
 const Products = () => {
-  // const navigate = useNavigate();
-
   const router = useRouter();
   const { responseData, error, isloading, fetchData } = useAxios(
     "http://157.175.56.75:7425/api/cars/all",
@@ -43,92 +43,78 @@ const Products = () => {
       },
     }).then(fetchData());
   };
+
   return (
     <div>
-
-
-
-
-
-      {/* "Sound": "High Audio"
-"Safety": "Anti-Skid"
-"Lighting": "LED Lights"
-"Control": "10 Touchscreen"
-"Comfort": "Steering Control"
-"Roof":" Panoramic"
-"Design": "Modern Elegance"
-"Wheels": "18 Alloys" */}
-      
-     <div className=" flex flex-row justify-between mb-5 mt-2 "> 
-      <h1 className="font-semibold text-lg">Dashboard</h1>
-      <Link href="/pages/add-car" className=""> <PlusIconMini class="h-7 w-7 text-slate-950 bg-[#10b981]  rounded-full" /></Link>
-      </div> 
-     { (isloading) ? <ClipLoader color="#10b981" size={130} className=""/>
-      :<div className="flex justify-start flex-wrap  ">
-        {responseData.map((item) => {
-          console.log(item.picture);
-          return (
-            <CarCard className="mb-5 h-64 w-80">
-              <div className="flex justify-between  ">
-                <div className="flex  flex-col">
-                  <p>{item.name}</p>
-                  <span className="text-slate-500">{`$${item.rentalPrice}/day`}</span>
+      <div className=" flex flex-row justify-between mb-5 mt-2 full-w">
+        <h1 className="font-semibold text-lg">Dashboard</h1>
+        <Link href="/pages/add-car" className="">
+          {" "}
+          <PlusIconMini class="h-7 w-7 text-slate-950 bg-[#10b981]  rounded-full" />
+        </Link>
+      </div>
+      {isloading ? (
+        <ClipLoader color="#10b981" size={130} className="m-auto" />
+      ) : (
+        <div className="flex justify-start flex-wrap  ">
+          {responseData.map((item) => {
+            console.log(item.picture);
+            return (
+              <CarCard className="mb-5 h-64 w-80">
+                <div className="flex justify-between  ">
+                  <div className="flex  flex-col">
+                    <p>{item.name}</p>
+                    <span className="text-slate-500">{`$${item.rentalPrice}/day`}</span>
+                  </div>
+                  <div className="flex justify-end ">
+                    <Modal
+                      header="This car has been deleted"
+                      children={<></>}
+                      title={
+                        <TrashIconMini
+                          className="h-6 w-6 text-red-500 cursor-pointer mr-2 mb-6"
+                          onClick={() => ToDeleteitem(item.id)}
+                        />
+                      }
+                      classNamee=""
+                      firstButton="OK"
+                    />
+                    <Link
+                      href={{
+                        pathname: "pages/edit-car",
+                        query: {
+                          ID: item.id,
+                          NAME: item.name,
+                          CAR_BRAND: item.brand,
+                          CAR_PRICE: item.rentalPrice,
+                          CAR_DESCRIPTION: item.description,
+                          CAR_PICTURE: item.picture,
+                          CAR_DISCOUNT: item.discount,
+                        },
+                      }}
+                    >
+                      <PencilIconMini className="h-6 w-6 text-slate-600 cursor-pointer" />
+                    </Link>
+                  </div>
                 </div>
-                <div className="flex justify-end ">
-
-                <TrashIconMini
-                    className="h-6 w-6 text-red-500 cursor-pointer mr-2"
-                    onClick={() => ToDeleteitem(item.id)}
-                  /> 
-                  {/* <Modal
-                    header="Are you sure to delete?"
-                    children={<></>}
-                    title={
-                      <TrashIconMini
-                        className="h-6 w-6 text-red-500 cursor-pointer"
-                        onClick={() => ToDeleteitem(item.id)}
-                      />
-                    }
-                    classNamee=""
-                    firstButton="yes"
-                  /> */}
-                  {/*  */}
-                  <Link
-                    href={{
-                      pathname: "pages/edit-car",
-                      query: {
-                        ID: item.id,
-                        NAME: item.name,
-                        CAR_BRAND: item.brand,
-                        CAR_PRICE: item.rentalPrice,
-                        CAR_DESCRIPTION: item.description,
-                        CAR_PICTURE: item.picture,
-                        CAR_DISCOUNT:item.discount,
-                      },
-                    }}
-                  >
-                    <PencilIconMini className="h-6 w-6 text-slate-600 cursor-pointer" />
-                  </Link>
-                </div>
-              </div>
-              <Image
-                src={`http://157.175.56.75:7425${item.picture}`}
-                alt="car image"
-                width={220}
-                height={220}
-                className="m-auto"
-              />
-              {/* <img src={`"${item.picture}"`} alt="car image" /> */}
-            </CarCard>
-          );
-        })}
-      </div>}
+                <Image
+                  src={`http://157.175.56.75:7425${item.picture}`}
+                  alt="car image"
+                  width={220}
+                  height={220}
+                  className="m-auto"
+                />
+                {/* <img src={`"${item.picture}"`} alt="car image" /> */}
+              </CarCard>
+            );
+          })}
+        </div>
+      )}
     </div>
   );
 };
 
 {
-
 }
 
 {

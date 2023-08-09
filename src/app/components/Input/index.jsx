@@ -47,9 +47,7 @@ const Input = (
         placeholder={placeholder}
         errormessage = {errormessage}
         value = {value}
-        // onClick ={ onclick}
          onChange = {()=> onchange}
-
         {...register(name,{required:errormessage})}
       />
     </>

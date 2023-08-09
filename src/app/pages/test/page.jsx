@@ -17,6 +17,8 @@ const Test = () => {
       console.log(specifications);
     }
   }, [spename, spevalue]);
+
+  // onchange={(e) => setCar({ ...Car, theName: e.target.value })}
   return (
     <div>
       <label className="mb-1">Car specifications</label>
@@ -34,19 +36,21 @@ const Test = () => {
           onChange={(e) => setSpevalue(e.target.value)}
         ></input>
       </div>
+              <h1>+</h1>
+
+
       {/* <div className="flex">
         <input
           className="rounded mb-2 border-solid border "
           type="text"
-          name="spe1name"
+          name="spename"
+          onChange={(e) => setSpename(e.target.value)}
         ></input>
         <input
           className="rounded mb-2 border-solid border "
           type="text"
           name="spe1value"
-          onChange={(e) =>
-            setSpecifications({ ...specifications, size: e.target.value })
-          }
+          onChange={(e) => setSpevalue(e.target.value)}
         ></input>
       </div> */}
     </div>
@@ -54,6 +58,37 @@ const Test = () => {
 };
 
 export default Test;
+
+
+// const [spename, setSpename] = useState();
+// const [spevalue, setSpevalue] = useState("");
+// const [specifications, setSpecifications] = useState({});
+// console.log(specifications);
+
+// useEffect(() => {
+//   if (spename || spevalue) {
+//     const spesObj = {
+//       [spename]: spevalue,
+//     };
+//     // setSpecifications();
+//     setSpecifications(spesObj);
+//     console.log(specifications);
+//   }
+// }, [spename, spevalue]);
+
+  
+
+
+
+
+      {/* "Sound": "High Audio",
+"Safety": "Anti-Skid",
+"Lighting": "LED Lights",
+"Control": "10 Touchscreen",
+"Comfort": "Steering Control",
+"Roof":" Panoramic",
+"Design": "Modern Elegance",
+"Wheels": "18 Alloys",*/}
 
 /*
 <Input 

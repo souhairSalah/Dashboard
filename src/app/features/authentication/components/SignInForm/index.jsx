@@ -73,7 +73,7 @@ const SignInForm = () => {
               placeholder = "test@gmail.com"
               name = "username"
               register={register}
-              errormessage = {message}
+              errormessage = {"This field required"}
             />
             <Input 
               type="password"
@@ -85,9 +85,9 @@ const SignInForm = () => {
               label = "password"
               name = "password"
               register={register}
-              errormessage = {message}
+              errormessage = {"This field required"}
             />
-            <p className="text-red-500">{errors.password?.message||errors.username?.message}</p>
+            <p className="text-red-500 text-center mb-3">{errors.password?.message||errors.username?.message}</p>
             <Button
               className="bg-emerald-500 text-white"
               type = "submit"

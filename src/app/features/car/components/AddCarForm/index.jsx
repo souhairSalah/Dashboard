@@ -5,13 +5,27 @@ import Card from "../../../../components/Card";
 import logo from "../../../../../../public/assets/img/logo.png";
 import Image from "next/image";
 import { useForm } from "react-hook-form";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const AddCarForm = () => {
+  const [spename, setSpename] = useState("");
+  const [spevalue, setSpevalue] = useState("");
+  const [specifications, setSpecifications] = useState({});
+  console.log(specifications);
+
+  useEffect(() => {
+    if (spename || spevalue) {
+      const spesObj = {
+        [spename]: spevalue,
+      };
+      // setSpecifications();
+      setSpecifications(spesObj);
+      console.log(specifications);
+    }
+  }, [spename, spevalue]);
+
   const { register, handleSubmit } = useForm();
   const [result, setResult] = useState("");
-  const addname = () => {};
-
   const onSubmit = async (data) => {
     // console.log(data);
 
@@ -94,6 +108,25 @@ const AddCarForm = () => {
                 name="rentalPrice"
                 register={register}
               ></Input>
+              {/* <div value={specifications} {...register("specifications")}>
+              <label className="mb-1">Car specifications</label>
+
+              <div className="flex">
+                <input
+                  className="rounded mb-2 mr-4 border-solid border py-2 "
+                  type="text"
+                  name="spename"
+                  onChange={(e) => setSpename(e.target.value)}
+                ></input>
+                <input
+                  className="rounded mb-2 border-solid border py-2 "
+                  type="text"
+                  name="spevalue"
+                  onChange={(e) => setSpevalue(e.target.value)}
+                ></input>
+              </div>
+              <h1 className="bg-[#10b981] ml-1 rounded-full w-4 h-5 m-auto">+</h1>
+              </div> */}
               <Input
                 type="text"
                 inputSize="small"
